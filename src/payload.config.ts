@@ -1,7 +1,6 @@
-// src/payload.config.ts
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor, FixedToolbarFeature } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -10,7 +9,6 @@ import sharp from 'sharp'
 import { Users } from './collections/Users' // Ensure Users.slug is exported and correct
 import { Media } from './collections/Media'
 import { Artists } from './collections/Artists'
-import { GalleryImages } from './collections/GalleryImages'
 import { Categories } from './collections/Categories'
 import { NewsArticles } from './collections/NewsArticles'
 import { FaqItems } from './collections/FaqItems'
@@ -37,11 +35,11 @@ export default buildConfig({
       baseDir: dirname,
     },
   },
+
   collections: [
     Users,
     Media,
     Artists,
-    GalleryImages,
     Categories,
     NewsArticles,
     FaqItems,
@@ -51,7 +49,10 @@ export default buildConfig({
   ],
   globals: [Header, Footer],
   endpoints: [fetchInstagramPostsEndpoint],
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
+  }),
+
   secret: process.env.PAYLOAD_SECRET || 'DEV_FALLBACK_SECRET_CHANGE_THIS_IN_PRODUCTION',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

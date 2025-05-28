@@ -17,10 +17,10 @@ const InstagramPosts: CollectionConfig = {
     },
   },
   access: {
-    read: () => true,
-    create: () => false,
-    update: ({ req: { user } }) => user?.role?.includes('admin') ?? false,
-    delete: ({ req: { user } }) => user?.role?.includes('admin') ?? false,
+    read: () => true, // Public read access
+    create: () => false, // No public creation
+    update: () => false, // No public updates
+    delete: () => false, // No public deletion
   },
   fields: [
     {

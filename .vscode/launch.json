@@ -12,7 +12,7 @@
       "runtimeArgs": ["--inspect"],
       "skipFiles": ["<node_internals>/**"],
       "serverReadyAction": {
-        "action": "debugWithChrome",
+        "action": "debugWithBrav",
         "killOnServerStop": true,
         "pattern": "- Local:.+(https?://.+)",
         "uriFormat": "%s",
@@ -21,4 +21,5 @@
       "cwd": "${workspaceFolder}"
     }
   ]
+  //create pnpm dev start script for run and debug nextjs app in this launch.json
 }

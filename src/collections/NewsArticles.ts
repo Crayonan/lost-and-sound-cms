@@ -1,6 +1,5 @@
 // src/collections/NewsArticles.ts
 import type { CollectionConfig } from 'payload'
-import { slugField } from '../fields/slug'
 import { publicOnly } from '../access/publicOnly' // Access control for public read
 
 export const NewsArticles: CollectionConfig = {
@@ -22,7 +21,6 @@ export const NewsArticles: CollectionConfig = {
       required: true,
       localized: true,
     },
-    slugField(),
     {
       name: 'coverImage',
       type: 'upload',

@@ -1,6 +1,5 @@
 // src/collections/Categories.ts
-import type { CollectionConfig } from 'payload'
-import { slugField } from '../fields/slug' // We'll create this helper field
+import type { CollectionConfig } from 'payload' // We'll create this helper field
 import { publicOnly } from '../access/publicOnly' // Access control for public read
 
 export const Categories: CollectionConfig = {
@@ -17,7 +16,6 @@ export const Categories: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true, // If you plan to translate categories
-    },
-    slugField(), // Reusable slug field based on 'name'
+    }, // Reusable slug field based on 'name'
   ],
 }

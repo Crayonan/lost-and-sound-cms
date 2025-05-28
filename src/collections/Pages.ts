@@ -1,6 +1,5 @@
 // src/collections/Pages.ts
 import type { CollectionConfig } from 'payload'
-import { slugField } from '../fields/slug'
 import { publicOnly } from '../access/publicOnly'
 
 export const Pages: CollectionConfig = {
@@ -21,8 +20,7 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
-    },
-    slugField(), // Will generate based on title. Ensure 'home' for homepage.
+    }, // Will generate based on title. Ensure 'home' for homepage.
     {
       name: 'hero',
       type: 'group',
