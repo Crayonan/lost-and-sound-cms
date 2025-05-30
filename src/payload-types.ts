@@ -76,6 +76,8 @@ export interface Config {
     pages: Page;
     'instagram-posts': InstagramPost;
     'fetch-logs': FetchLog;
+    products: Product;
+    orders: Order;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -91,6 +93,8 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     'instagram-posts': InstagramPostsSelect<false> | InstagramPostsSelect<true>;
     'fetch-logs': FetchLogsSelect<false> | FetchLogsSelect<true>;
+    products: ProductsSelect<false> | ProductsSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -355,6 +359,52 @@ export interface FetchLog {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products".
+ */
+export interface Product {
+  id: number;
+  name: string;
+  description?: string | null;
+  /**
+   * Price in the smallest currency unit (e.g., cents for USD).
+   */
+  price: number;
+  currency: 'usd' | 'eur';
+  productImage: number | Media;
+  /**
+   * Leave blank for unlimited stock.
+   */
+  stock?: number | null;
+  stripeID?: string | null;
+  skipSync?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: number;
+  user?: (number | null) | User;
+  items?:
+    | {
+        product: number | Product;
+        quantity: number;
+        price: number;
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  totalAmount: number;
+  currency: string;
+  stripePaymentIntentID?: string | null;
+  status: 'pending' | 'paid' | 'failed' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -395,6 +445,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'fetch-logs';
         value: number | FetchLog;
+      } | null)
+    | ({
+        relationTo: 'products';
+        value: number | Product;
+      } | null)
+    | ({
+        relationTo: 'orders';
+        value: number | Order;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -602,6 +660,44 @@ export interface FetchLogsSelect<T extends boolean = true> {
   instagramUsername?: T;
   status?: T;
   message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "products_select".
+ */
+export interface ProductsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  price?: T;
+  currency?: T;
+  productImage?: T;
+  stock?: T;
+  stripeID?: T;
+  skipSync?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders_select".
+ */
+export interface OrdersSelect<T extends boolean = true> {
+  user?: T;
+  items?:
+    | T
+    | {
+        product?: T;
+        quantity?: T;
+        price?: T;
+        name?: T;
+        id?: T;
+      };
+  totalAmount?: T;
+  currency?: T;
+  stripePaymentIntentID?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
