@@ -159,7 +159,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
-  category?: ('artists' | 'gallery' | 'news' | 'faq' | 'instagram') | null;
+  category?: ('artists' | 'gallery' | 'news' | 'faq' | 'instagram' | 'product') | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -303,6 +303,7 @@ export interface FaqItem {
 export interface Page {
   id: number;
   title: string;
+  slug?: string | null;
   hero?: {
     type?: ('videoBackground' | 'imageBackground' | 'none') | null;
     heading?: string | null;
@@ -558,6 +559,7 @@ export interface FaqItemsSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  slug?: T;
   hero?:
     | T
     | {

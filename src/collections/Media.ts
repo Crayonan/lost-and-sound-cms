@@ -54,6 +54,7 @@ export const Media: CollectionConfig = {
         { label: 'News', value: 'news' },
         { label: 'FAQ', value: 'faq' },
         { label: 'Instagram', value: 'instagram' },
+        { label: 'Product', value: 'product' },
       ],
     },
   ],

@@ -20,6 +20,16 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
+    },
+    {
+      name: 'slug',
+      label: 'Slug',
+      type: 'text',
+      index: true, // <- MAKE SURE THIS (OR SIMILAR) IS PRESENT AND TRUE
+      admin: {
+        position: 'sidebar',
+      },
+      // ... other slug configurations like hooks for generation
     }, // Will generate based on title. Ensure 'home' for homepage.
     {
       name: 'hero',

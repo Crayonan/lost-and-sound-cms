@@ -17,6 +17,9 @@ importers:
       '@payloadcms/payload-cloud':
         specifier: 3.39.1
         version: 3.39.1(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))
+      '@payloadcms/plugin-stripe':
+        specifier: ^3.39.1
+        version: 3.39.1(@types/react@19.1.0)(monaco-editor@0.52.2)(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)
       '@payloadcms/richtext-lexical':
         specifier: 3.39.1
         version: 3.39.1(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@payloadcms/next@3.39.1(@types/react@19.1.0)(graphql@16.11.0)(monaco-editor@0.52.2)(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3))(@types/react@19.1.0)(monaco-editor@0.52.2)(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)(yjs@13.6.26)
@@ -50,6 +53,9 @@ importers:
       sharp:
         specifier: 0.32.6
         version: 0.32.6
+      stripe:
+        specifier: ^18.1.1
+        version: 18.1.1(@types/node@22.15.17)
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -1238,6 +1244,11 @@ packages:
 
   '@payloadcms/payload-cloud@3.39.1':
     resolution: {integrity: sha512-/HQt9JMkDL3Jg/yXkxwfbqoZWz3w+gLMiJt1YywYbKXu0fO5SujSCVcT7BwUQzdsUsd7ANAc2kVha0+Fchk89g==}
+    peerDependencies:
+      payload: 3.39.1
+
+  '@payloadcms/plugin-stripe@3.39.1':
+    resolution: {integrity: sha512-kf3dHYg5+dU0PvLgFNCNyaGu95suEZZ+sIIeuQwXNt6quZyIO0GXNbqChougzOcv4u7hg5sqyeIby2VQfWRebA==}
     peerDependencies:
       payload: 3.39.1
 
@@ -2987,6 +2998,10 @@ packages:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
 
+  lodash.get@4.4.2:
+    resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
+
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
@@ -3839,6 +3854,19 @@ packages:
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  stripe@10.17.0:
+    resolution: {integrity: sha512-JHV2KoL+nMQRXu3m9ervCZZvi4DDCJfzHUE6CmtJxR9TmizyYfrVuhGvnsZLLnheby9Qrnf4Hq6iOEcejGwnGQ==}
+    engines: {node: ^8.1 || >=10.*}
+
+  stripe@18.1.1:
+    resolution: {integrity: sha512-hlF0ripc2nJrihpsJZQDl3xirS7tpdpS7DlmSNLEDRW8j7Qr215y5DHOI3+aEY/lq6PG8y4GR1RZPtEoIoAs/g==}
+    engines: {node: '>=12.*'}
+    peerDependencies:
+      '@types/node': '>=12.x.x'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
 
   strnum@1.1.2:
     resolution: {integrity: sha512-vrN+B7DBIoTTZjnPNewwhx6cBA/H+IS7rfW68n7XxC1y7uoiGQBxaKzqucGUgavX15dJgiGztLJ8vxuEzwqBdA==}
@@ -5680,6 +5708,23 @@ snapshots:
     transitivePeerDependencies:
       - aws-crt
       - encoding
+
+  '@payloadcms/plugin-stripe@3.39.1(@types/react@19.1.0)(monaco-editor@0.52.2)(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)':
+    dependencies:
+      '@payloadcms/translations': 3.39.1
+      '@payloadcms/ui': 3.39.1(@types/react@19.1.0)(monaco-editor@0.52.2)(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)
+      lodash.get: 4.4.2
+      payload: 3.39.1(graphql@16.11.0)(typescript@5.7.3)
+      stripe: 10.17.0
+      uuid: 10.0.0
+    transitivePeerDependencies:
+      - '@types/react'
+      - monaco-editor
+      - next
+      - react
+      - react-dom
+      - supports-color
+      - typescript
 
   '@payloadcms/richtext-lexical@3.39.1(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@faceless-ui/scroll-info@2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@payloadcms/next@3.39.1(@types/react@19.1.0)(graphql@16.11.0)(monaco-editor@0.52.2)(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3))(@types/react@19.1.0)(monaco-editor@0.52.2)(next@15.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(payload@3.39.1(graphql@16.11.0)(typescript@5.7.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.7.3)(yjs@13.6.26)':
     dependencies:
@@ -7773,6 +7818,8 @@ snapshots:
     dependencies:
       p-locate: 5.0.0
 
+  lodash.get@4.4.2: {}
+
   lodash.merge@4.6.2: {}
 
   lodash@4.17.21: {}
@@ -8906,6 +8953,17 @@ snapshots:
   strip-json-comments@2.0.1: {}
 
   strip-json-comments@3.1.1: {}
+
+  stripe@10.17.0:
+    dependencies:
+      '@types/node': 22.15.17
+      qs: 6.14.0
+
+  stripe@18.1.1(@types/node@22.15.17):
+    dependencies:
+      qs: 6.14.0
+    optionalDependencies:
+      '@types/node': 22.15.17
 
   strnum@1.1.2: {}
 
