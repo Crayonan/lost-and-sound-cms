@@ -105,10 +105,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'stripe-management': StripeManagement;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'stripe-management': StripeManagementSelect<false> | StripeManagementSelect<true>;
   };
   locale: null;
   user: User & {
@@ -366,7 +368,7 @@ export interface Product {
   name: string;
   description?: string | null;
   /**
-   * Price in the smallest currency unit (e.g., cents for USD).
+   * Price in cents.
    */
   price: number;
   currency: 'usd' | 'eur';
@@ -375,6 +377,10 @@ export interface Product {
    * Leave blank for unlimited stock.
    */
   stock?: number | null;
+  /**
+   * Managed by custom hooks / Stripe plugin. ID of the default price in Stripe.
+   */
+  stripePriceID?: string | null;
   stripeID?: string | null;
   skipSync?: boolean | null;
   updatedAt: string;
@@ -674,6 +680,7 @@ export interface ProductsSelect<T extends boolean = true> {
   currency?: T;
   productImage?: T;
   stock?: T;
+  stripePriceID?: T;
   stripeID?: T;
   skipSync?: T;
   updatedAt?: T;
@@ -811,6 +818,16 @@ export interface FooterQuickLink {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stripe-management".
+ */
+export interface StripeManagement {
+  id: number;
+  placeholder?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -870,6 +887,16 @@ export interface FooterQuickLinkSelect<T extends boolean = true> {
   reference?: T;
   url?: T;
   newTab?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "stripe-management_select".
+ */
+export interface StripeManagementSelect<T extends boolean = true> {
+  placeholder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
